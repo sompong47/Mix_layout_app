@@ -57,23 +57,79 @@ class MainApp extends StatelessWidget {
             ),
 
             // 🔽 ListView ด้านล่าง
-            Expanded(
-              flex: 1,
-              child: ListView.builder(
-                itemCount: 9,
-                padding: const EdgeInsets.all(12),
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    child: ListTile(
-                      leading: CircleAvatar(child: Text('${index + 1}')),
-                      title: Text('รายการที่ ${index + 1}'),
-                      subtitle: const Text('รายละเอียดเพิ่มเติม'),
-                    ),
-                  );
-                },
+           Expanded(
+  flex: 1,
+  child: ListView.builder(
+    itemCount: 9,
+    padding: const EdgeInsets.all(12),
+    itemBuilder: (context, index) {
+      // รายชื่อแตกต่างกัน
+      final List<String> titles = [
+        "วันเลือกชมรม",
+        "3หน่อเข้าวัด",
+        "3สหายทำบุญ",
+        "แอ็คหล่อหน้ากระจก",
+        "ถ่ายริมน้ำซะหน่อย",
+        "อกหัก",
+        "บักเคมเบะ",
+        "หล่อมากครับ",
+        "แอ็คอีกรอบ"
+      ];
+
+      // เลือกสีแตกต่าง (ไล่โทนสีสดใส)
+      final List<Color> colors = [
+        Colors.redAccent,
+        Colors.blueAccent,
+        const Color.fromARGB(255, 80, 220, 10),
+        Colors.orangeAccent,
+        Colors.purpleAccent,
+        const Color.fromARGB(255, 21, 202, 54),
+        Colors.amberAccent,
+        const Color.fromARGB(255, 11, 27, 203),
+        Colors.pinkAccent,
+      ];
+
+      return Card(
+        margin: const EdgeInsets.only(bottom: 8),
+        elevation: 4,
+        shadowColor: colors[index].withOpacity(0.6),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: colors[index].withOpacity(0.7),
+            child: Text(
+              '${index + 1}',
+              style: const TextStyle(
+                color: Colors.black87,
+                fontWeight: FontWeight.bold,
               ),
             ),
+          ),
+          title: Text(
+            titles[index],
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: colors[index],
+              shadows: [
+                Shadow(
+                  blurRadius: 4,
+                  color: colors[index].withOpacity(0.7),
+                  offset: const Offset(1, 1),
+                )
+              ],
+            ),
+          ),
+          subtitle: const Text('รายละเอียดเพิ่มเติม'),
+          trailing: Icon(Icons.star, color: colors[index]),
+          onTap: () {
+            // ทำอะไรเมื่อกดได้ เช่น แสดง Dialog
+          },
+        ),
+      );
+    },
+  ),
+),
           ],
         ),
       ),
