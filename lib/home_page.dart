@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'components/drawer.dart';
 import 'all_items_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -45,9 +46,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GG กับพองเพื่อน'),
+        title: const Text('GG กับผองเพื่อน'),
         backgroundColor: Colors.blue,
       ),
+      drawer: const MyDrawer(),
       body: Column(
         children: [
           Expanded(
@@ -88,13 +90,47 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Get.to(() => const AllItemsPage());
                     },
-                    child: const Text(
-                      "แสดงทั้งหมด",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color(0xFF42A5F5),
+                            Color(0xFF1976D2),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue.withOpacity(0.4),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.visibility, color: Colors.white, size: 22),
+                          const SizedBox(width: 8),
+                          const Text(
+                            "แสดงทั้งหมด",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 6,
+                                  color: Colors.black26,
+                                  offset: Offset(1, 2),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

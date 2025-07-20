@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:listview_app/components/drawer.dart';
 import 'profile_page.dart';
+import 'all_items_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'My App',
-      home: const ProfilePage(), // ✅ หน้าเริ่มต้นคือหน้าโปรไฟล์
+      home: ProfilePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('หน้าแรก')),
+      drawer: const MyDrawer(),
+      body: const Center(child: Text('เนื้อหาหน้าแรก')),
     );
   }
 }
